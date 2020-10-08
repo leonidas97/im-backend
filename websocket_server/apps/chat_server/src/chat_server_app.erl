@@ -2,6 +2,7 @@
 -behaviour(application).
 -export([start/2, stop/1]).
 
+
 start(_StartType, _StartArgs) ->
     Dispatch = cowboy_router:compile([
         {'_', [{"/websocket/:auth", websocket_manager, []}]}
@@ -13,6 +14,7 @@ start(_StartType, _StartArgs) ->
         #{env => #{dispatch => Dispatch}}
     ),
     chat_server_sup:start_link().
+
 
 stop(_State) ->
     ok.

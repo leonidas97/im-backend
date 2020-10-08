@@ -25,10 +25,6 @@ delete(Collection, Selector) ->
     end).
 
 
-%% find vraca kursor kojim mozemo da iteriramo
-%% mora se zatvoriti po zavrsetku
-%% umesto toga se moze koristiti mc_cursor:rest 
-%% vraca sve rezultate i zatvara kursor
 find(Collection, Selector) ->
     poolboy:transaction(mongo_pool, fun(ConnectionKeeper) ->
         mongo_logger ! log,
