@@ -1,0 +1,28 @@
+{application, mongo_manager,
+ [{description, "An OTP application"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {mod, {mongo_manager_app, []}},
+  {applications,
+   [kernel,
+    stdlib,
+    mongodb
+   ]},
+  {env,[
+   {pools,[
+     {mongo_pool,
+      [
+        {size, 10},
+        {max_overflow, 20}
+      ],[
+        {host, "localhost"}, 
+        {database, <<"im_db">>}, 
+        {port, 27017}
+     ]}
+    ]}
+   ]},
+  {modules, []},
+
+  {licenses, ["Apache 2.0"]},
+  {links, []}
+ ]}.

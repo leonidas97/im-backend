@@ -1,0 +1,17 @@
+{application, cluster_manager,
+ [{description, "An OTP application"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {mod, {cluster_manager_app, []}},
+  {applications,
+   [kernel,
+    stdlib,
+    redis_manager,
+    mongo_manager
+   ]},
+  {env,[]},
+  {modules, []},
+
+  {licenses, ["Apache 2.0"]},
+  {links, []}
+ ]}.

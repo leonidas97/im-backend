@@ -1,0 +1,62 @@
+version: "3.8"
+networks:
+    backend:
+        driver: overlay
+
+services:
+    haproxy:
+        image: "haproxytech/haproxy-debian:2.0"
+        networks:
+            - backend
+        ports:
+            - "80:80"
+            - "433:433"
+        dns: 127.0.0.11
+        volumes:
+            - ./haproxy_config/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg
+        deploy:
+            replicas: 1
+            placement:
+                constraints:
+                    - "node.role==manager"
+    
+    redis:
+        image: "bitnami/redis:latest"
+        ports: 
+            - "6379:6379"
+        networks:
+            - backend
+        environment:
+            - ALLOW_EMPTY_PASSWORD=yes
+        deploy:
+            replicas: 1
+
+    mongo:
+        image: "mongo:latest"
+        networks:
+            - backend
+        ports:
+            - "27017:27017"
+        environment:
+            - MONGO_INITDB_DATABASE=im_db
+        volumes:
+            - ./mongo_config/data:/data/db
+        deploy:
+            replicas: 1
+            
+    ws:
+        image: "ws:latest"
+        command: /app/_build/prod/rel/chat_server/bin/chat_server foreground 
+        networks:
+            - backend
+        deploy:
+            endpoint_mode: dnsrr
+            replicas: 1 
+
+    rest:
+        image: "rest:latest"
+        networks:
+            - backend
+        deploy:
+            endpoint_mode: dnsrr
+            replicas: 1

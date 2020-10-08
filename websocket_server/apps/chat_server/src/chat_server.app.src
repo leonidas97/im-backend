@@ -1,0 +1,19 @@
+{application, chat_server,
+ [{description, "An OTP application"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {mod, {chat_server_app, []}},
+  {applications,
+   [kernel,
+    stdlib,
+    cluster_manager,
+    cowboy,
+    jwerl,
+    jsone
+   ]},
+  {env,[{jwt_key, <<"super-secret">>}]},
+  {modules, []},
+
+  {licenses, ["Apache 2.0"]},
+  {links, []}
+ ]}.
