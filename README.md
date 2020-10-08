@@ -3,7 +3,7 @@
 Scalable WebSocket chat application backend built with HAProxy, Erlang, Python, Redis and MongoDB.
 
 ## Development mode:
-- ### Requirments:
+- ### Requirements:
   - Docker and Docker-Compose
   - Erlang/OTP 23
   - Rebar3 built tool
@@ -29,7 +29,7 @@ Scalable WebSocket chat application backend built with HAProxy, Erlang, Python, 
 
 
 ## Deployment mode:
-- ### Requirments:
+- ### Requirements:
   - Docker
   - JMeter for tests
    
