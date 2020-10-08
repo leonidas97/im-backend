@@ -18,7 +18,7 @@ Scalable WebSocket chat application backend built with HAProxy, Erlang, Python, 
     rebar3 shell --name node1@127.0.0.1
 ```
 
-## Deployment:
+## Deployment mode:
 - ### Requirments:
   - Docker
   - JMeter for tests
