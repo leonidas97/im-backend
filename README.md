@@ -10,13 +10,23 @@ Scalable WebSocket chat application backend built with HAProxy, Erlang, Python, 
   - JMeter for tests
   
 - ### Instructions:
-```
+  - Docker init
+  ``` 
     cd /rest_server
     docker build image -t rest .
     docker-compose up
+  ```
+  - Insert test users using mongo shell
+  ``` 
+    load("/mongo_config/mongo_init.js");
+  ```
+  - Start one WebSocket server node
+  ```
     cd ../websocket_server
     rebar3 shell --name node1@127.0.0.1
-```
+  ```
+  - Start tests from JMeter GUI or command-line
+
 
 ## Deployment mode:
 - ### Requirments:
@@ -35,4 +45,10 @@ Scalable WebSocket chat application backend built with HAProxy, Erlang, Python, 
   ```
     docker swarm init --advertise-addr {IP_ADDRESS}
     docker stack deploy --compose-file docker-stack.yml im
-```
+  ```
+  - Insert test data using mongo shell
+  ``` 
+    load("/mongo_config/mongo_init.js");
+  ```
+  - Start tests from JMeter GUI or command-line tool
+  
